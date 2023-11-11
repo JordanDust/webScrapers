@@ -51,5 +51,11 @@ def runPrices(website, item):
 def runStock(item):
 	print("stocks")
 
+def saveToDisk(webType):
+	print("save")
+
+def writeToGui(webType):
+	print("gui")
+	
 
 runPrices(ebay, "h")	
