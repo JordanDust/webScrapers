@@ -55,7 +55,14 @@ def saveToDisk(webType):
 	print("save")
 
 def writeToGui(webType):
-	print("gui")
-	
+	if(webType == "eccomerce"):
+		return [price, shippingCost, discounts, shippingFrom, shippingCost]
+
+	elif(webType == "stocks"):
+		return [price, open, pClose, volume, marketCap, beta, PERatio, EPS]
+
+	else:
+		print("error - could not write to GUI")
+
 
 runPrices(ebay, "h")	
