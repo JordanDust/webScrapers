@@ -47,7 +47,10 @@ def runPrices(website, item):
 		print("error - could not connect to website")
 
 def runStock(item):
-	print("stocks")
+	print("stock")
+	stocks = stocks + "quote/" + item + "?p=" + "item" + "&.tsrc=fin-srch"
+	
+	
 
 def saveToDisk(webType):
 	print("save")
