@@ -1,8 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-#stolen from https://www.geeksforgeeks.org/python-web-scraping-tutorial/
-
 #ecommerce websites
 ebay = "https://www.ebay.com/"
 amazon = "https://www.amazon.com/ref=nav_logo"
