@@ -8,7 +8,7 @@ amazon = "https://www.amazon.com/ref=nav_logo"
 facebookMarketplace = "https://www.facebook.com/marketplace/"
 
 #stocks websites
-stocks = "https://finance.yahoo.com/"
+stocks = "https://www.marketwatch.com/"
 
 #ecommerce vars
 price = 0.0
@@ -48,8 +48,17 @@ def runPrices(website, item):
 		print("error - could not connect to website")
 
 def runStock(item):
-	print("stock")
-	stocks = (f"{stocks}quote/{item}?p={item}&.tsrc=fin-srch")
+	nStocks = (f"{stocks}/investing/stock/{item}?mod=search_symbol")
+	r = requests.get(nStocks)
+
+	with open(r, 'r') as f:
+		contents = f.read()
+
+		soup = BeautifulSoup(contents, "html.parser")
+
+		for child in soup.descendants:
+			if child.name:
+				print(child.name)
 
 #organizes the variables based on website type and puts them in a pretty format for saveToDisk function
 def organizeVars(webType):
@@ -81,4 +90,4 @@ def writeToGui(webType):
 	else:
 		print("error - could not write to GUI")
 
-print(writeToGui("ecommerce")[0])
+runStock("AMZN")
