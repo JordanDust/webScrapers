@@ -26,56 +26,24 @@ def selS():
 
 #checks tracker, then unwraps the corresponding list (either eccomerce or stock) from webScrapper.py, and then assigns the data to output
 def writeToOutput():
-    #ecommerce vars
-    price = 0.0
-    shippingCost = 0.0
-    discounts = 0.0
-    shippingFrom = ""
-    shippingTime = ""
-
-    #stocks vars
-    price = 0.0
-    open = 0.0
-    pClose = 0.0
-    volume = 0.0
-    marketCap = 0.0 
-    beta = 0.0
-    PERatio = 0.0
-    EPS = 0.0
-
     if(tracker == 1):
-        price = ((writeToGui(eccomerce))[0])
-        shippingCost = ((writeToGui(eccomerce))[1])
-        discounts = ((writeToGui(eccomerce))[2])
-        shippingFrom = ((writeToGui(eccomerce))[3])
-        shippingTime = ((writeToGui(eccomerce))[4])
-
-        output.insert(1, "Price: " + price)
-        output.insert(2, "Shipping Cost: " + shippingCost)
-        output.insert(3, "Discounts: " + discounts)
-        output.insert(4, "Shipping From: " + shippingFrom)
-        output.insert(5, "Shipping Time: " + shippingTime)
+        output.insert(1, "Price: " + ((writeToGui(eccomerce))[0]))
+        output.insert(2, "Shipping Cost: " + ((writeToGui(eccomerce))[1]))
+        output.insert(3, "Discounts: " + ((writeToGui(eccomerce))[2]))
+        output.insert(4, "Shipping From: " + ((writeToGui(eccomerce))[3]))
+        output.insert(5, "Shipping Time: " + ((writeToGui(eccomerce))[4]))
 
         output.place_configure(relx = 0.2, rely = 0.2)
 
     elif(tracker == 2):
-        price = ((writeToGui(stocks))[0])
-        open = ((writeToGui(stocks))[1])
-        pClose = ((writeToGui(stocks))[2])
-        volume = ((writeToGui(stocks))[3])
-        marketCap = ((writeToGui(stocks))[4])
-        beta = ((writeToGui(stocks))[5])
-        PERatio = ((writeToGui(stocks))[6])
-        EPS = ((writeToGui(stocks))[7])
-
-        output.insert(1, "Price: " + price)
-        output.insert(2, "Opening Price: " + open)
-        output.insert(3, "Previous Close " + pClose)
-        output.insert(4, "Volume " + volume)
-        output.insert(5, "Market Cap: " + marketCap)
-        output.insert(6, "Beta: " + beta)
-        output.insert(7, "P/E Ratio: " + PERatio)
-        output.insert(8, "EPS: " + EPS)
+        output.insert(1, "Price: " + ((writeToGui(stocks))[0]))
+        output.insert(2, "Opening Price: " + ((writeToGui(stocks))[1]))
+        output.insert(3, "Previous Close " + ((writeToGui(stocks))[2]))
+        output.insert(4, "Volume " + ((writeToGui(stocks))[3]))
+        output.insert(5, "Market Cap: " + ((writeToGui(stocks))[4]))
+        output.insert(6, "Beta: " + ((writeToGui(stocks))[5]))
+        output.insert(7, "P/E Ratio: " + ((writeToGui(stocks))[6]))
+        output.insert(8, "EPS: " + ((writeToGui(stocks))[7]))
 
         output.place_configure(relx = 0.2, rely = 0.2)
 
@@ -83,7 +51,7 @@ m.title("Web Scraper")
 m.geometry("1000x1000")
 m.configure(bg = "gray20")
 
-a = Label(m, text = "Bee & Mele's Hopefully Functioning Web Scraper!", font = ("Impact", 20), fg = "white", bg = "gray20").place(relx = 0.5, rely = 0.02, anchor = CENTER)
+Label(m, text = "Bee & Mele's Hopefully Functioning Web Scraper!", font = ("Impact", 20), fg = "white", bg = "gray20").place(relx = 0.5, rely = 0.02, anchor = CENTER)
 
 #Buttons that decide whether eccomerce or stocks
 eButton = Button(m, text = "Eccomerce", bg = "gray20", fg = "white", font = ("Impact", 16), command = selE).place(relx = 0.2, rely = 0.05)
