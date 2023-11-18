@@ -49,24 +49,31 @@ def runPrices(website, item):
 
 def runStock(item):
 	print("stock")
-	stocks = stocks + "quote/" + item + "?p=" + "item" + "&.tsrc=fin-srch"
+	stocks = (f"{stocks}quote/{item}?p={item}&.tsrc=fin-srch")
 
 #organizes the variables based on website type and puts them in a pretty format for saveToDisk function
 def organizeVars(webType):
-	if(webType == "eccomerce"):
-			return price + ", " + shippingCost + ", " + discounts + ", " + shippingFrom + ", " + shippingTime
+	if(webType == "ecommerce"):
+			return (f"{price}, {shippingCost}, {discounts}, {shippingFrom}, {shippingTime}")
+
 	elif(webType == "stocks"):
-			return price + ", " + open + ", " + pClose + ", " + volume + ", " + marketCap + ", " + beta + ", " + PERatio + ", " + EPS
+			return (f"{price}, {open}, {pClose}, {volume}, {marketCap}, {beta}, {PERatio}, {EPS}")
 
 def saveToDisk(webType):
-	print("save")
-	if(webType == "eccomerce"):
-			file = open("eTextData.txt", "w")
-			file.write(date.today() + "/n" + organizeVars(eccomerse)
+	if(webType == "ecommerce"):
+		with open("eTextData.txt", "w") as file:
+			file.write(date.today() + "\n" + organizeVars("ecommerce"))
+
+	elif(webType == "stocks"):
+		with open("sTextData.txt", "w") as file:
+			file.write(date.today() + "\n" + organizeVars("stocks"))
+
+	else:
+		print("ERROR - printing to Disk")
 
 def writeToGui(webType):
-	if(webType == "eccomerce"):
-		return [price, shippingCost, discounts, shippingFrom, shippingCost]
+	if(webType == "ecommerce"):
+		return [price, shippingCost, discounts, shippingFrom, shippingTime]
 
 	elif(webType == "stocks"):
 		return [price, open, pClose, volume, marketCap, beta, PERatio, EPS]
@@ -74,5 +81,4 @@ def writeToGui(webType):
 	else:
 		print("error - could not write to GUI")
 
-
-runPrices(ebay, "h")	
+print(writeToGui("ecommerce")[0])

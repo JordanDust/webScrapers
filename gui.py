@@ -4,7 +4,7 @@ from webScrapper import *
 m = Tk() #creates window
 tracker = 0 #keeps track of whether eccomerce or stocks
 
-#moves stock input out of range, moves eccomerce inputs in place, sets tracker
+#moves stock input out of range, moves ecomerce inputs in place, sets tracker
 def selE():
     sInputL.place_configure(relx = 1, rely = 1)
     sInput.place_configure(relx = 1, rely = 1)
@@ -14,7 +14,7 @@ def selE():
 
     tracker = 1
 
-#moves eccomerce input out of range, moves stock inputs in place, sets tracker
+#moves ecomerce input out of range, moves stock inputs in place, sets tracker
 def selS():
     eInputL.place_configure(relx = 1, rely = 1)
     eInput.place_configure(relx = 1, rely = 1)
@@ -24,26 +24,26 @@ def selS():
 
     tacker = 2
 
-#checks tracker, then unwraps the corresponding list (either eccomerce or stock) from webScrapper.py, and then assigns the data to output
+#checks tracker, then unwraps the corresponding list (either ecomerce or stock) from webScrapper.py, and then assigns the data to output
 def writeToOutput():
     if(tracker == 1):
-        output.insert(1, "Price: " + ((writeToGui(eccomerce))[0]))
-        output.insert(2, "Shipping Cost: " + ((writeToGui(eccomerce))[1]))
-        output.insert(3, "Discounts: " + ((writeToGui(eccomerce))[2]))
-        output.insert(4, "Shipping From: " + ((writeToGui(eccomerce))[3]))
-        output.insert(5, "Shipping Time: " + ((writeToGui(eccomerce))[4]))
+        output.insert(1, f"Price: {writeToGui('ecommerce')[0]}")
+        output.insert(2, f"Shipping Cost: {writeToGui('ecommerce')[1]}")
+        output.insert(3, f"Discounts: {writeToGui('ecommerce')[2]}")
+        output.insert(4, f"Shipping From: {writeToGui('ecommerce')[3]}")
+        output.insert(5, f"Shipping Time: {writeToGui('ecommerce')[4]}")
 
         output.place_configure(relx = 0.2, rely = 0.2)
 
     elif(tracker == 2):
-        output.insert(1, "Price: " + ((writeToGui(stocks))[0]))
-        output.insert(2, "Opening Price: " + ((writeToGui(stocks))[1]))
-        output.insert(3, "Previous Close " + ((writeToGui(stocks))[2]))
-        output.insert(4, "Volume " + ((writeToGui(stocks))[3]))
-        output.insert(5, "Market Cap: " + ((writeToGui(stocks))[4]))
-        output.insert(6, "Beta: " + ((writeToGui(stocks))[5]))
-        output.insert(7, "P/E Ratio: " + ((writeToGui(stocks))[6]))
-        output.insert(8, "EPS: " + ((writeToGui(stocks))[7]))
+        output.insert(1, f"Price: {writeToGui('stocks')[0]}")
+        output.insert(2, f"Opening Price: {writeToGui('stocks')[1]}")
+        output.insert(3, f"Previous Close: {writeToGui('stocks')[2]}")
+        output.insert(4, f"Volume: {writeToGui('stocks')[3]}")
+        output.insert(5, f"Market Cap: {writeToGui('stocks')[4]}")
+        output.insert(6, f"Beta: {writeToGui('stocks')[5]}")
+        output.insert(7, f"P/E Ratio: {writeToGui('stocks')[6]}")
+        output.insert(8, f"EPS: {writeToGui('stocks')[7]}")
 
         output.place_configure(relx = 0.2, rely = 0.2)
 
@@ -53,11 +53,11 @@ m.configure(bg = "gray20")
 
 Label(m, text = "Bee & Mele's Hopefully Functioning Web Scraper!", font = ("Impact", 20), fg = "white", bg = "gray20").place(relx = 0.5, rely = 0.02, anchor = CENTER)
 
-#Buttons that decide whether eccomerce or stocks
-eButton = Button(m, text = "Eccomerce", bg = "gray20", fg = "white", font = ("Impact", 16), command = selE).place(relx = 0.2, rely = 0.05)
+#Buttons that decide whether ecomerce or stocks
+eButton = Button(m, text = "Ecomerce", bg = "gray20", fg = "white", font = ("Impact", 16), command = selE).place(relx = 0.2, rely = 0.05)
 sButton = Button(m, text = "Stocks", bg = "gray20", fg = "white", font = ("Impact", 16), command = selS).place(relx = 0.7, rely = 0.05)
 
-#Eccomerce Inputs
+#ecomerce Inputs
 eInputL = Label(m, text = "Input What You Want To Search: ", bg = "gray20", fg = "white", font = ("Impact", 16))
 eInput = Entry(m, bg = "gray20", fg = "white", font = ("Impact", 16))
 #eInputL.place(relx = 0.2, rely = 0.1)
