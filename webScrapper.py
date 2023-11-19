@@ -2,33 +2,20 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import time
 
-#ecommerce websites
-ebay = "https://www.ebay.com/"
-amazon = "https://www.amazon.com/ref=nav_logo"
-facebookMarketplace = "https://www.facebook.com/marketplace/"
-
-#stocks websites
-stocks = "finviz.com"
-
-#ecommerce vars
-price = 0.0
-shippingCost = 0.0
-discounts = 0.0
-shippingFrom = ""
-shippingTime = ""
-
-#stocks vars
-price = 0.0
-open = 0.0
-pClose = 0.0
-volume = 0.0
-marketCap = 0.0 
-beta = 0.0
-PERatio = 0.0
-EPS = 0.0
-
 #open website, finds price, returns relevant data
-def runPrices(website, item):	
+def runPrices(website, item):
+	#ecommerce websites
+	ebay = "https://www.ebay.com/"
+	amazon = "https://www.amazon.com/ref=nav_logo"
+	facebookMarketplace = "https://www.facebook.com/marketplace/"
+
+	#ecommerce vars
+	ePrice = 0.0
+	shippingCost = 0.0
+	discounts = 0.0
+	shippingFrom = ""
+	shippingTime = ""
+
 	r = requests.get(website)
 	soup = BeautifulSoup(r.content, 'html.parser')
 
@@ -48,19 +35,38 @@ def runPrices(website, item):
 		print("ERROR - could not connect to website")
 
 def runStock(item):
-	nStocks = (f"{stocks}quote.ashx?t={item}&p=d")
-	r = requests.get(nStocks)
+	#stocks vars
+	sPrice = 0.0
+	open = 0.0
+	pClose = 0.0
+	volume = 0.0
+	marketCap = 0.0 
+	beta = 0.0
+	PERatio = 0.0
+	EPS = 0.0
+	data = {}
 
-	if(r.status_code == 200):
+
+	stocks = (f"https://www.marketwatch.com/investing/stock/{item}?mod=search_symbol") #stock website
+	r = requests.get(stocks) #gets HTML of website
+
+	if(r.status_code == 200): #checks if website is up
 		soup = BeautifulSoup(r.content, 'html5lib')
-		table = soup.find_all()
-
-		#for row in table.find_all('kv__item'):
-		#	open = row.h5.text
 		
-		print(table)
+		priceElement = soup.find('div', {'class': 'intraday__data'})
+		betaElement = soup.find('li', {'class': 'list__item', 'data-template': 'quotes/overview'})
+		pCloseElement = soup.find('li', {'class': 'list__item', 'data-template': 'quotes/overview'})
 
+		if betaElement:
+			betaTag = betaElement.find('span', {'class': 'primary'})
+			if betaTag:
+				beta = betaTag.text.strip()
 
+		print(beta)
+		sPrice = priceElement.text.strip() if priceElement else 0.0
+
+		return [sPrice,open,pClose,volume,marketCap,beta,PERatio,EPS]
+	
 	else:
 		print("ERROR - could not connect to website")	
 
@@ -95,4 +101,4 @@ def writeToGui(webType):
 	else:
 		print("error - could not write to GUI")
 
-runStock("AMZN")
+print(runStock("AMZN"))
