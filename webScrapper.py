@@ -8,7 +8,7 @@ amazon = "https://www.amazon.com/ref=nav_logo"
 facebookMarketplace = "https://www.facebook.com/marketplace/"
 
 #stocks websites
-stocks = "https://www.marketwatch.com/"
+stocks = "finviz.com"
 
 #ecommerce vars
 price = 0.0
@@ -48,18 +48,18 @@ def runPrices(website, item):
 		print("ERROR - could not connect to website")
 
 def runStock(item):
-	nStocks = (f"{stocks}investing/stock/{item}?mod=search_symbol")
+	nStocks = (f"{stocks}quote.ashx?t={item}&p=d")
 	r = requests.get(nStocks)
 
 	if(r.status_code == 200):
 		soup = BeautifulSoup(r.content, 'html5lib')
-		table = soup.find('', attrs = {'id':"element element--list"})
+		table = soup.find_all()
+
+		#for row in table.find_all('kv__item'):
+		#	open = row.h5.text
 		
 		print(table)
 
-		
-
-		#for row in table.findAll('div', )
 
 	else:
 		print("ERROR - could not connect to website")	
