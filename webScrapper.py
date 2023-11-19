@@ -29,10 +29,10 @@ EPS = 0.0
 
 #open website, finds price, returns relevant data
 def runPrices(website, item):	
-	w = requests.get(website)
-	soup = BeautifulSoup(w.content, 'html.parser')
+	r = requests.get(website)
+	soup = BeautifulSoup(r.content, 'html.parser')
 
-	if(w.status_code == 200): #checks if website is up
+	if(r.status_code == 200): #checks if website is up
 
 		if(website == ebay): #ebay
 			print ("ebay")
@@ -45,20 +45,25 @@ def runPrices(website, item):
 		if(website == facebookMarketplace): #facebook marketplace
 			print ("fMarket")
 	else:
-		print("error - could not connect to website")
+		print("ERROR - could not connect to website")
 
 def runStock(item):
-	nStocks = (f"{stocks}/investing/stock/{item}?mod=search_symbol")
+	nStocks = (f"{stocks}investing/stock/{item}?mod=search_symbol")
 	r = requests.get(nStocks)
 
-	with open(r, 'r') as f:
-		contents = f.read()
+	if(r.status_code == 200):
+		soup = BeautifulSoup(r.content, 'html5lib')
+		table = soup.find('', attrs = {'id':"element element--list"})
+		
+		print(table)
 
-		soup = BeautifulSoup(contents, "html.parser")
+		
 
-		for child in soup.descendants:
-			if child.name:
-				print(child.name)
+		#for row in table.findAll('div', )
+
+	else:
+		print("ERROR - could not connect to website")	
+
 
 #organizes the variables based on website type and puts them in a pretty format for saveToDisk function
 def organizeVars(webType):
