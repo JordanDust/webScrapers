@@ -10,8 +10,6 @@
     <input type="text" id="lname" name="lname"><br><br>
     <button>Search Products</button>
     <button>Search Stocks</button>
-    
-    <button onclick="runPythonScript()">Run Python Script</button>
     <script>
       function runPythonScript()
       {
@@ -21,5 +19,6 @@
         subprocess.run(["python", pythonScriptPath]);
       }
     </script>
+    <button onclick="runPythonScript()">Run Python Script</button>
   </body>
 <HTML>
