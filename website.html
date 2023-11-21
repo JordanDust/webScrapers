@@ -10,5 +10,15 @@
     <input type="text" id="lname" name="lname"><br><br>
     <button>Search Products</button>
     <button>Search Stocks</button>
+    <script>
+      function runPythonScript()
+      {
+        // Get the path to the Python script.
+        var pythonScriptPath = "path/to/python/gui.py";
+        // Run the Python script.
+        subprocess.run(["python", pythonScriptPath]);
+      }
+    </script>
+    <button onclick="runPythonScript()">Run Python Script</button>
   </body>
 <HTML>
