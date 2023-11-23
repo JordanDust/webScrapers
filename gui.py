@@ -1,5 +1,5 @@
 from tkinter import *
-from webScrapper import *
+from main import writeToGUI
 
 m = Tk() #creates window
 tracker = 0 #keeps track of whether eccomerce or stocks
