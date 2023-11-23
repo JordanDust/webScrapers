@@ -67,12 +67,22 @@ def runStock(item):
 		print("ERROR - could not connect to website")	
 
 
-#organizes the variables based on website type and puts them in a pretty format for saveToDisk function
-def organizeVars(webType):
-	if(webType == "ecommerce"):
+#organizes the variables based on output type and website type and sends them either as a string or a list
+def getVars(webType, outputType):
+	if(outputType == disk):
+		
+		if(webType == "ecommerce"):
 			return (f"{price}, {shippingCost}, {discounts}, {shippingFrom}, {shippingTime}")
 
-	elif(webType == "stocks"):
+		elif(webType == "stock"):
 			return (f"{price}, {open}, {pClose}, {volume}, {marketCap}, {beta}, {PERatio}, {EPS}")
+		
+	elif(outputType == "gui"):
+		
+		if(webType == "ecommerce"):
+			return [price, shippingCost, discounts, shippingFrom, shippingTime]
+			
+		elif(outputType == "stock");
+			return [price, open, pClose, volume, marketCap, beta, PERatio, EPS]
 
 print(runStock("AMZN"))
