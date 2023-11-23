@@ -75,26 +75,4 @@ def organizeVars(webType):
 	elif(webType == "stocks"):
 			return (f"{price}, {open}, {pClose}, {volume}, {marketCap}, {beta}, {PERatio}, {EPS}")
 
-def saveToDisk(webType):
-	if(webType == "ecommerce"):
-		with open("eTextData.txt", "w") as file:
-			file.write(date.today() + "\n" + organizeVars("ecommerce"))
-
-	elif(webType == "stocks"):
-		with open("sTextData.txt", "w") as file:
-			file.write(date.today() + "\n" + organizeVars("stocks"))
-
-	else:
-		print("ERROR - printing to Disk")
-
-def writeToGui(webType):
-	if(webType == "ecommerce"):
-		return [price, shippingCost, discounts, shippingFrom, shippingTime]
-
-	elif(webType == "stocks"):
-		return [price, open, pClose, volume, marketCap, beta, PERatio, EPS]
-
-	else:
-		print("error - could not write to GUI")
-
 print(runStock("AMZN"))
