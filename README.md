@@ -1,2 +1,2 @@
 # webScraper
-Web scrapper code for Raspberry Pi. Learning Module #5
+A simple web scrapper created by Liam Bee and Jason Mele for the 5th Learning Module of Mr. Detrick's Honors Advanded Topics in Computer Science class at Warren Hills Regional High School. 
