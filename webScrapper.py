@@ -2,19 +2,29 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import time
 
+#ecommerce vars
+ePrice = 0.0
+shippingCost = 0.0
+discounts = 0.0
+shippingFrom = ""
+shippingTime = ""
+	
+#stock vars
+sPrice = 0.0
+open = 0.0
+pClose = 0.0
+volume = 0.0
+marketCap = 0.0 
+beta = 0.0
+PERatio = 0.0
+EPS = 0.0
+
 #open website, finds price, returns relevant data
 def runPrices(website, item):
 	#ecommerce websites
 	ebay = "https://www.ebay.com/"
 	amazon = "https://www.amazon.com/ref=nav_logo"
 	facebookMarketplace = "https://www.facebook.com/marketplace/"
-
-	#ecommerce vars
-	ePrice = 0.0
-	shippingCost = 0.0
-	discounts = 0.0
-	shippingFrom = ""
-	shippingTime = ""
 
 	r = requests.get(website)
 	soup = BeautifulSoup(r.content, 'html.parser')
@@ -35,18 +45,6 @@ def runPrices(website, item):
 		print("ERROR - could not connect to website")
 
 def runStock(item):
-	#stocks vars
-	sPrice = 0.0
-	open = 0.0
-	pClose = 0.0
-	volume = 0.0
-	marketCap = 0.0 
-	beta = 0.0
-	PERatio = 0.0
-	EPS = 0.0
-	data = {}
-
-
 	stocks = (f"https://www.marketwatch.com/investing/stock/{item}?mod=search_symbol") #stock website
 	r = requests.get(stocks) #gets HTML of website
 
@@ -64,8 +62,6 @@ def runStock(item):
 
 		print(beta)
 		sPrice = priceElement.text.strip() if priceElement else 0.0
-
-		return [sPrice,open,pClose,volume,marketCap,beta,PERatio,EPS]
 	
 	else:
 		print("ERROR - could not connect to website")	
