@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-from datetime import time
 
 #ecommerce vars
 ePrice = 0.0
@@ -60,7 +59,6 @@ def runStock(item):
 			if betaTag:
 				beta = betaTag.text.strip()
 
-		print(beta)
 		sPrice = priceElement.text.strip() if priceElement else 0.0
 	
 	else:
@@ -69,20 +67,20 @@ def runStock(item):
 
 #organizes the variables based on output type and website type and sends them either as a string or a list
 def getVars(webType, outputType):
-	if(outputType == disk):
+	if(outputType == "disk"):
 		
 		if(webType == "ecommerce"):
-			return (f"{price}, {shippingCost}, {discounts}, {shippingFrom}, {shippingTime}")
+			return (f"{EPrice}, {shippingCost}, {discounts}, {shippingFrom}, {shippingTime}")
 
 		elif(webType == "stock"):
-			return (f"{price}, {open}, {pClose}, {volume}, {marketCap}, {beta}, {PERatio}, {EPS}")
+			return (f"{sPrice}, {open}, {pClose}, {volume}, {marketCap}, {beta}, {PERatio}, {EPS}")
 		
 	elif(outputType == "gui"):
 		
 		if(webType == "ecommerce"):
-			return [price, shippingCost, discounts, shippingFrom, shippingTime]
+			return [ePrice, shippingCost, discounts, shippingFrom, shippingTime]
 			
-		elif(outputType == "stock");
-			return [price, open, pClose, volume, marketCap, beta, PERatio, EPS]
+		elif(outputType == "stock"):
+			return [sPrice, open, pClose, volume, marketCap, beta, PERatio, EPS]
 
-print(runStock("AMZN"))
+#print(runStock("AMZN"))
