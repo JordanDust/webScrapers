@@ -1,10 +1,6 @@
 <HTML>
   <head>
     <title>Warren Hills Comptuer Science Web Scraper</title>
-    <link
-  rel="stylesheet"
-  href="https://pyscript.net/alpha/pyscript.css" />
-<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
   </head>
   <body>  
     <h1>Web Scraper</h1>
@@ -15,9 +11,15 @@
                     <p><input type="submit" value="Search Stock" /></p>
                     <p><input type="submit" value="Search Product" /></p>
                 </form>
-    <py-script> print("Python in the browser") </py-script>
+    <button onclick="runPythonScript()">Run Python Script</button>
   </body>
 <HTML>
 <!--https://www.hostinger.com/tutorials/add-javascript-to-html#:~:text=The%20first%20way%20to%20add,between%20the%20tags
   https://medium.com/@brajagopal.tripathi/how-to-run-a-python-script-from-an-html-button-17058bf5dbe5
 https://blog.pythonanywhere.com/169/-->
+function runPythonScript() {
+  // Get the path to the Python script.
+  var pythonScriptPath = "path/to/python/script.py";
+  // Run the Python script.
+  subprocess.run(["python", pythonScriptPath]);
+}
