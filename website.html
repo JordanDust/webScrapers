@@ -5,22 +5,24 @@
   <body>  
     <h1>Web Scraper</h1>
     <!--<embed type="text/html" src="report.txt" width="500" height="200">-->
-    
-    <label for="lname">Enter Product Or Stock Name:</label>
-    <input type="text" id="lname" name="lname"><br><br>
-    <button>Search Products</button>
-    <button>Search Stocks</button>
-    <script>
-      function runPythonScript()
+    <p>Enter your Product or Stock name:</p>
+                <form action="#" method="post>
+                    <p><input name="stockOrProduct" /></p>
+                    <p><input type="submit" value="Search Stock" /></p>
+                    <p><input type="submit" value="Search Product" /></p>
+                </form>
+    <button onclick="runPythonScript()">Run Python Script</button>
+      <script>
+    function runPythonScript() 
       {
         // Get the path to the Python script.
-        var pythonScriptPath = "C:\Users\CSStudent\Downloads\webScrapper";
+        var pythonScriptPath = "C:\Users\CSStudent\Downloads\test.py";
         // Run the Python script.
         subprocess.run(["python", pythonScriptPath]);
       }
-    </script>
-    <button onclick="runPythonScript()">Run Python Script</button>
+      </script>
   </body>
-<HTML>
-https://www.hostinger.com/tutorials/add-javascript-to-html#:~:text=The%20first%20way%20to%20add,between%20the%20tags
+</HTML>
+<!--https://www.hostinger.com/tutorials/add-javascript-to-html#:~:text=The%20first%20way%20to%20add,between%20the%20tags
   https://medium.com/@brajagopal.tripathi/how-to-run-a-python-script-from-an-html-button-17058bf5dbe5
+https://blog.pythonanywhere.com/169/-->
