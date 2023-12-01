@@ -1,5 +1,6 @@
 from tkinter import *
-from main import *
+from main import writeToGui
+from webScrapper import *
 
 m = Tk() #creates window
 tracker = 0 #keeps track of whether eccomerce or stocks
@@ -23,6 +24,13 @@ def selS():
     sInput.place(relx = 0.55, rely = 0.1)
 
     tacker = 2
+
+def search():
+    if(tracker == 1):
+        runPrices("all", eInput)
+
+    elif(tracker == 2):
+        runStocks(sInput)
 
 #checks tracker, then unwraps the corresponding list (either ecomerce or stock) from webScrapper.py, and then assigns the data to output
 def writeToOutput():
@@ -56,6 +64,7 @@ Label(m, text = "Bee & Mele's Hopefully Functioning Web Scraper!", font = ("Impa
 #Buttons that decide whether ecomerce or stocks
 eButton = Button(m, text = "Ecomerce", bg = "gray20", fg = "white", font = ("Impact", 16), command = selE).place(relx = 0.2, rely = 0.05)
 sButton = Button(m, text = "Stocks", bg = "gray20", fg = "white", font = ("Impact", 16), command = selS).place(relx = 0.7, rely = 0.05)
+searchButton = Button(m, text = "Search", bg = "gray20", fg = "white", font = ("Impact", 16), command = search).place(relx = 0.5, rely = 0.17, anchor = CENTER)
 
 #ecomerce Inputs
 eInputL = Label(m, text = "Input What You Want To Search: ", bg = "gray20", fg = "white", font = ("Impact", 16))
@@ -70,10 +79,10 @@ sInput = Entry(m, bg = "gray20", fg = "white", font = ("Impact", 16))
 #sInput.place(relx = 0.55, rely = 0.1)
 
 #Output
-Label(m, text = "OUTPUT", font = ("Impact", 16), fg = "white", bg = "gray20").place(relx = 0.5, rely = 0.18, anchor = CENTER)
+Label(m, text = "OUTPUT", font = ("Impact", 16), fg = "white", bg = "gray20").place(relx = 0.5, rely = 0.24, anchor = CENTER)
 output = Listbox(m, bg = "gray20", fg = "white", font = ("Impact", 16), width = 60)
 
-output.place(relx = 0.2, rely = 0.2)
+output.place(relx = 0.2, rely = 0.27)
 
 
 m.mainloop() 
