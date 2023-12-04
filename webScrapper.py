@@ -26,7 +26,7 @@ def runPrices(website, item):
 	facebookMarketplace = "https://www.facebook.com/marketplace/"
 
 	r = requests.get(website)
-	soup = BeautifulSoup(r.content, 'html.parser')
+	soup = BeautifulSoup(r.content, 'html5lib')
 
 	if(r.status_code == 200): #checks if website is up
 
@@ -50,17 +50,20 @@ def runStock(item):
 	if(r.status_code == 200): #checks if website is up
 		soup = BeautifulSoup(r.content, 'html5lib')
 		
-		priceElement = soup.find('div', {'class': 'intraday__data'})
-		betaElement = soup.find('li', {'class': 'list__item', 'data-template': 'quotes/overview'})
-		pCloseElement = soup.find('li', {'class': 'list__item', 'data-template': 'quotes/overview'})
+		priceElement = soup.find("Open")#soup.find('div', {'class': 'intraday__data'})
 
-		if betaElement:
-			betaTag = betaElement.find('span', {'class': 'primary'})
-			if betaTag:
-				beta = betaTag.text.strip()
 
-		sPrice = priceElement.text.strip() if priceElement else 0.0
-	
+		openElement = soup.find('td', {'class': 'table__cell u-semi'})
+
+
+
+		sPrice = priceElement.text.strip()
+		open = openElement.text.strip()	
+
+		print(sPrice)
+
+		#print(getVars("stock", "disk"))
+
 	else:
 		print("ERROR - could not connect to website")	
 
@@ -83,4 +86,4 @@ def getVars(webType, outputType):
 		elif(outputType == "stock"):
 			return [sPrice, open, pClose, volume, marketCap, beta, PERatio, EPS]
 
-#print(runStock("AMZN"))
+print(runStock("AMZN"))
